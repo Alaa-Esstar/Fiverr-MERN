@@ -1,0 +1,44 @@
+// TrustedBy.scss
+
+$primaryColor: #013914;
+
+.trustedBy {
+    background-color: #f5f5f5;
+    padding: 40px 0;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 120px;
+            height: auto;
+            margin: 20px;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    // Media query for smaller screens
+    @media screen and (max-width: 768px) {
+        .container {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            img {
+                max-width: 100px;
+            }
+        }
+    }
+}

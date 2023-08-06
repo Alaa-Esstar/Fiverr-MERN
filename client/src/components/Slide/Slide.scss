@@ -1,0 +1,49 @@
+.slide {
+    padding: 40px 0;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .mySwiper {
+            position: relative;
+
+            .swiper-wrapper {
+                display: flex;
+            }
+
+            .swiper-slide {
+                width: 100%;
+                transition: transform 0.3s ease;
+            }
+
+            // Custom pagination styles
+            .swiper-pagination {
+                .swiper-pagination-bullet {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    margin: 0 5px;
+                    cursor: pointer;
+                    background-color: #fff;
+
+
+                    &:hover {
+                        background-color: darken(#fff, 10%);
+                    }
+
+                    &-active {
+                        background-color: #007aff;
+                    }
+                }
+            }
+
+            // Responsive styles
+            @media screen and (max-width: 767px) {
+                .swiper-slide {
+                    width: 50% !important; // Override width to fit one slide per view on small screens
+                }
+            }
+        }
+    }
+}

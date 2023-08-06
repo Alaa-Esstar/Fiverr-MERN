@@ -1,0 +1,143 @@
+$primaryColor: #013914;
+$secondaryColor: #1dbf73;
+$highlightColor: #ffffff;
+
+.featured {
+    background-color: $primaryColor;
+    color: $highlightColor;
+    padding: 40px 0;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .left {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            h1 {
+                font-size: 50px;
+                font-weight: bold;
+
+                i {
+                    color: $secondaryColor;
+                    font-weight: 300;
+                }
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: white;
+                border-radius: 5px;
+
+                .searchInput {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    background-color: $highlightColor;
+                    border-radius: 4px;
+                    padding: 6px 10px;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        margin: 10px;
+                    }
+
+                    input {
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        color: $primaryColor;
+                        font-size: 16px;
+                        flex: 1;
+
+                        &::placeholder {
+                            color: $primaryColor;
+                        }
+                    }
+                }
+
+                button {
+                    width: 120px;
+                    height: 52px;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    background-color: $secondaryColor;
+                    color: $highlightColor;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: darken($secondaryColor, 10%);
+                    }
+                }
+            }
+
+            .popular {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                font-size: 14px;
+
+                span {
+                    font-weight: bold;
+                }
+
+                button {
+                    font-size: 14px;
+                    padding: 6px 12px;
+                    background-color: transparent;
+                    color: $highlightColor;
+                    border: 1px solid $highlightColor;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: $highlightColor;
+                        color: $primaryColor;
+                    }
+                }
+            }
+        }
+
+        .right {
+            width: 35%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            flex-direction: column; // Stack the .left and .right sections on top of each other
+            align-items: center;
+
+            .left {
+                width: 100%;
+                text-align: center; // Center align the text in .left
+            }
+
+            .right {
+                display: none; // Hide the .right section when the screen is 768px or below
+            }
+        }
+    }
+
+}
