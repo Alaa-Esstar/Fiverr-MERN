@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -15,7 +13,7 @@ import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import CatCard from '../catCard/CatCard';
 import { cards } from "../../data"
 
-const Slide = () => {
+const Slide = ({ children }) => {
     return (
         <div className='slide'>
             <div className="container">
@@ -46,9 +44,7 @@ const Slide = () => {
                     modules={[FreeMode, Navigation, Pagination]}
                     className="mySwiper"
                 >
-                    {cards.map(card => (
-                        <SwiperSlide> <CatCard item={card} key={card.id} /> </SwiperSlide>
-                    ))}
+                    {children}
                 </Swiper>
             </div>
         </div>
