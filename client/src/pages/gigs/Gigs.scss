@@ -1,0 +1,175 @@
+.gigs {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+
+        .breadcrumbs {
+            font-size: 14px;
+            color: #999;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+
+            .left {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+
+                span {
+                    font-size: 16px;
+                }
+
+                input {
+                    width: 70px;
+                    padding: 6px 10px;
+                    margin: 0 5px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+
+                button {
+                    padding: 6px 12px;
+                    background-color: #1dbf73;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 14px;
+
+                    &:hover {
+                        background-color: #149f55;
+                    }
+                }
+            }
+
+            .right {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+
+                .sortBy {
+                    font-size: 16px;
+                    margin-right: 5px;
+                }
+
+                .sortType {
+                    font-size: 16px;
+                    color: #1dbf73;
+                }
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 5px;
+                }
+
+                .rightMenu {
+                    position: absolute;
+                    top: 35px;
+                    right: 0;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px;
+                    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                    z-index: 9;
+
+                    span {
+                        font-size: 14px;
+                        color: #555;
+                        padding: 5px 10px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #f7f7f7;
+                        }
+                    }
+                }
+            }
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 10px;
+
+        .menu {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 10px;
+
+            .left {
+                width: 100%;
+                margin-bottom: 10px;
+
+                input {
+                    width: 100%;
+                }
+
+                button {
+                    margin-top: 10px;
+                    width: 100%;
+                }
+            }
+
+            .right {
+                position: static;
+                margin-top: 10px;
+
+                img {
+                    margin-left: 0;
+                }
+
+                .rightMenu {
+                    position: static;
+                    top: 0;
+                    right: 0;
+                    box-shadow: none;
+                    border: none;
+                    background-color: transparent;
+                    flex-direction: row;
+                    padding: 0;
+                    margin-top: 0;
+                    z-index: 1;
+
+                    span {
+                        padding: 0;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .cards {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+            margin-top: 10px;
+        }
+    }
+}

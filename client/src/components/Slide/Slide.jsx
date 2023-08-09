@@ -10,8 +10,6 @@ import "./Slide.scss"
 
 // import required modules
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
-import CatCard from '../catCard/CatCard';
-import { cards } from "../../data"
 
 const Slide = ({ children }) => {
     return (
