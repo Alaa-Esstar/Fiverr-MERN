@@ -17,7 +17,7 @@ function Gig() {
                 prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
             setFade(false);
-        }, 500); // 500ms is the duration of the fade transition
+        }, 300); // 500ms is the duration of the fade transition
     };
     const handlePrev = () => {
         setFade(true);
@@ -26,7 +26,7 @@ function Gig() {
                 prevIndex === 0 ? images.length - 1 : prevIndex - 1
             );
             setFade(false);
-        }, 500); // 500ms is the duration of the fade transition
+        }, 300); // 500ms is the duration of the fade transition
     };
     useEffect(() => {
         // Reset the fade effect when the image changes

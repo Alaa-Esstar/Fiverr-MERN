@@ -62,6 +62,7 @@
                 overflow: hidden;
 
                 .carousel-image {
+                    border-radius: 20px;
                     max-width: 100%;
                     height: auto;
                     opacity: 1;
@@ -275,7 +276,7 @@
             height: max-content;
             max-height: 500px;
             position: sticky;
-            top: 21%;
+            top: 25%;
 
             .price {
                 display: flex;
@@ -314,6 +315,7 @@
             }
 
             .features {
+                padding: 40px 10px;
                 .item {
                     display: flex;
                     align-items: center;
@@ -346,6 +348,9 @@
 
             .right {
                 position: relative;
+                .features {
+                    padding: 20px 10px;
+                }
             }
         }
     }

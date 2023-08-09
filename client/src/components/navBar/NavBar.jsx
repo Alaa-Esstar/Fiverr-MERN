@@ -19,12 +19,12 @@ const NavBar = () => {
         }
     }, []);
 
-    // const currentUser = {
-    //     id: 1,
-    //     username: "John Doe",
-    //     isSeller: true
-    // }
-    const currentUser = null
+    const currentUser = {
+        id: 1,
+        username: "John Doe",
+        isSeller: true
+    }
+    // const currentUser = null
     return (
         <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
             <div className="container">

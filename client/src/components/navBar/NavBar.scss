@@ -9,7 +9,6 @@ $activeBgColor: #ffffff;
     z-index: 999;
     transition: 0.5s all ease;
     color: white;
-    border-bottom: 0.5px solid rgb(240, 240, 240);
 
     @media screen and (max-width: 768px) {
         position: relative;
@@ -18,6 +17,7 @@ $activeBgColor: #ffffff;
     &.active {
         background-color: $activeBgColor;
         color: black;
+        border-bottom: 0.5px solid rgb(240, 240, 240);
 
         button {
             background-color: white;
