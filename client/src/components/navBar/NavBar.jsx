@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./NavBar.scss"
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import newRequest from '../../utils/newRequest';
 
 const NavBar = () => {
     const [active, setActive] = useState(false);
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const { pathname } = useLocation()
 
@@ -19,12 +21,17 @@ const NavBar = () => {
         }
     }, []);
 
-    const currentUser = {
-        id: 1,
-        username: "John Doe",
-        isSeller: true
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    const handleLogout = async () => {
+        try {
+            await newRequest.post("/auth/logout");
+            localStorage.setItem("currentUser", null)
+            navigate("/");
+        } catch (err) {
+            console.log(err)
+        }
     }
-    // const currentUser = null
     return (
         <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
             <div className="container">
@@ -40,10 +47,14 @@ const NavBar = () => {
                     <span>English</span>
                     <span>Sign in</span>
                     {!currentUser?.isSeller && <span>Become a Seller</span>}
-                    {!currentUser && <button>Join</button>}
+                    {!currentUser &&
+                        <Link className='link' to="/register">
+                            <button>Join</button>
+                        </Link>
+                    }
                     {currentUser && (
                         <div className="user" onClick={() => setOpen(!open)}>
-                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
+                            <img src={currentUser.img || "./img/noavatar.jpg"} alt="" />
                             <span>{currentUser?.username}</span>
                             {open && <div className="options">
                                 {currentUser?.isSeller && (
@@ -54,7 +65,7 @@ const NavBar = () => {
                                 )}
                                 <Link className='link' to="/orders">Orders</Link>
                                 <Link className='link' to="/messages">Messages</Link>
-                                <Link className='link' to="/">Logout</Link>
+                                <Link className='link' onClick={handleLogout}>Logout</Link>
                             </div>}
                         </div>
                     )}

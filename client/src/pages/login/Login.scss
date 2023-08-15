@@ -34,11 +34,16 @@
             font-size: 18px;
             background-color: #1dbf73;
             cursor: pointer;
+            &:disabled {
+                background-color: #8bd4b2;
+                cursor: not-allowed;
+            }
         }
 
         span {
             color: red;
-            font-size: 12px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba($color: #000000, $alpha: 0.4);
         }
     }
 }

@@ -1,0 +1,8 @@
+# mongo link 
+MONGO_URL= 
+
+# generete a secrete key
+JWT_KEY= 
+
+# link of front 
+ALLOWED_ORIGIN=
