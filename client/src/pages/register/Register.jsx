@@ -1,10 +1,47 @@
 import React, { useState } from 'react'
 import "./Register.scss"
+import upload from '../../utils/upload';
+import newRequest from '../../utils/newRequest';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const [user, setUser] = useState({
+        username: "", password: "", email: "",
+        img: "", country: "", isSeller: false,
+        desc: ""
+    });
+    const [file, setFile] = useState(null);
+
+    const handleChange = (e) => {
+        setUser((prev) => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
+    }
+    const handleSeller = (e) => {
+        setUser((prev) => {
+            return { ...prev, isSeller: e.target.checked }
+        })
+    }
+
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (file) {
+                const url = await upload(file);
+                await newRequest.post("auth/register", { ...user, img: url })
+            }
+            await newRequest.post("auth/register", user)
+            navigate("/")
+        } catch (err) {
+            console.error("Registration failed:", err.response.data.message);
+        }
+    }
+
     return (
         <div className="register">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="left">
                     <h1>Create a new account</h1>
                     <label htmlFor="">Username</label>
@@ -12,30 +49,25 @@ const Register = () => {
                         name="username"
                         type="text"
                         placeholder="johndoe"
-                    // onChange={handleChange}
-                    />
+                        onChange={handleChange} required />
                     <label htmlFor="">Email</label>
                     <input
                         name="email"
                         type="email"
                         placeholder="email"
-                    // onChange={handleChange}
-                    />
+                        onChange={handleChange} required />
                     <label htmlFor="">Password</label>
                     <input name="password" type="password"
-                    // onChange={handleChange} 
-                    />
+                        onChange={handleChange} required />
                     <label htmlFor="">Profile Picture</label>
                     <input type="file"
-                    // onChange={(e) => setFile(e.target.files[0])} 
-                    />
+                        onChange={(e) => setFile(e.target.files[0])} />
                     <label htmlFor="">Country</label>
                     <input
                         name="country"
                         type="text"
                         placeholder="Usa"
-                    // onChange={handleChange}
-                    />
+                        onChange={handleChange} />
                     <button type="submit">Register</button>
                 </div>
                 <div className="right">
@@ -44,8 +76,7 @@ const Register = () => {
                         <label htmlFor="">Activate the seller account</label>
                         <label className="switch">
                             <input type="checkbox"
-                            // onChange={handleSeller} 
-                            />
+                                onChange={handleSeller} />
                             <span className="slider round"></span>
                         </label>
                     </div>
@@ -54,8 +85,7 @@ const Register = () => {
                         name="phone"
                         type="text"
                         placeholder="+1 234 567 89"
-                    // onChange={handleChange}
-                    />
+                        onChange={handleChange} />
                     <label htmlFor="">Description</label>
                     <textarea
                         placeholder="A short description of yourself"
@@ -63,7 +93,7 @@ const Register = () => {
                         id=""
                         cols="30"
                         rows="10"
-                    // onChange={handleChange}
+                        onChange={handleChange}
                     ></textarea>
                     <button type="submit" className='bRight'>Register</button>
                 </div>

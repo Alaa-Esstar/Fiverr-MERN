@@ -5,6 +5,21 @@ const { createError } = require("../utils/createError");
 
 const register = async (req, res, next) => {
     try {
+        const { username, password, img, email, country, isSeller } = req.body;
+
+        if (!username || !password || !img || !email || !country || !isSeller) {
+            return res.status(400).json({ message: "Please provide all required fields." });
+        }
+
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(409).json({ message: "Username is already taken." });
+        }
+        const existingEmailUser = await User.findOne({ email });
+        if (existingEmailUser) {
+            return res.status(409).json({ message: "Email is already registered." });
+        }
+
         const hash = bcrypt.hashSync(req.body.password, 5);
         const newUser = new User({
             ...req.body,
