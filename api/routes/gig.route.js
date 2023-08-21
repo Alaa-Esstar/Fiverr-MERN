@@ -1,7 +1,11 @@
 const router = require("express").Router();
+const { createGig, deleteGig, getGig, getGigs } = require("../controller/gig.controller");
+const { verifyToken } = require("../middleware/jwt");
 
-router.get("/test", (req, res) => {
-    res.send("it works");
-})
+
+router.post("/", verifyToken, createGig)
+router.delete("/:id", verifyToken, deleteGig)
+router.get("/single/:id", verifyToken, getGig)
+router.get("/", verifyToken, getGigs)
 
 module.exports = router;
