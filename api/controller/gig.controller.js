@@ -17,7 +17,7 @@ const getGigs = async (req, res, next) => {
         })
     }
     try {
-        const gigs = await Gig.find(filters)
+        const gigs = await Gig.find(filters).sort({ [q.sort]: -1 })
         res.status(200).send(gigs);
     } catch (err) {
         next(err)

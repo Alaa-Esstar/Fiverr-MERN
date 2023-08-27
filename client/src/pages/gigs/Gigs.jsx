@@ -1,7 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss"
-import { gigs } from "../../data";
 import GigCard from "../../components/gigCard/GigCard";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useLocation } from "react-router-dom";
 
 const Gigs = () => {
     const [sort, setSort] = useState("sales");
@@ -9,14 +11,29 @@ const Gigs = () => {
     const minRef = useRef();
     const maxRef = useRef();
 
+    const { search } = useLocation();
+
+    const { isLoading, error, data, refetch } = useQuery({
+        queryKey: ['gigs'],
+        queryFn: () =>
+            newRequest.get(`/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`).then(res => {
+                return res.data;
+            })
+    })
+
+    console.log(data)
+
     const reSort = (type) => {
         setSort(type);
         setOpen(false);
     };
 
+    useEffect(() => {
+        refetch();
+    }, [sort])
+
     const apply = () => {
-        console.log(minRef.current.value)
-        console.log(maxRef.current.value)
+        refetch();
     }
     return (
         <div className="gigs">
@@ -44,15 +61,19 @@ const Gigs = () => {
                                 ) : (
                                     <span onClick={() => reSort("sales")}>Best Selling</span>
                                 )}
-                                <span onClick={() => reSort("sales")}>Popular</span>
                             </div>
                         )}
                     </div>
                 </div>
                 <div className="cards">
-                    {gigs.map((gig) => (
-                        <GigCard key={gig.id} item={gig} />
-                    ))}
+                    {isLoading
+                        ? "loading"
+                        : error
+                            ? "someting went wrong"
+                            : data.map((gig) => (
+                                <GigCard key={gig._id} item={gig} />
+                            ))
+                    }
                 </div>
             </div>
         </div>
