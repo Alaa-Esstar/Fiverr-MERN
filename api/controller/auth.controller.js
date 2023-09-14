@@ -5,9 +5,9 @@ const { createError } = require("../utils/createError");
 
 const register = async (req, res, next) => {
     try {
-        const { username, password, img, email, country, isSeller } = req.body;
+        const { username, password, img, email, country } = req.body;
 
-        if (!username || !password || !img || !email || !country || !isSeller) {
+        if (!username || !password || !img || !email || !country ) {
             return res.status(400).json({ message: "Please provide all required fields." });
         }
 

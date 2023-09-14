@@ -11,6 +11,8 @@ const Register = () => {
         desc: ""
     });
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const handleChange = (e) => {
         setUser((prev) => {
@@ -27,6 +29,8 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError("");
         try {
             if (file) {
                 const url = await upload(file);
@@ -36,6 +40,9 @@ const Register = () => {
             navigate("/")
         } catch (err) {
             console.error("Registration failed:", err.response.data.message);
+            setError("Registration failed: " + err.response.data.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -68,7 +75,7 @@ const Register = () => {
                         type="text"
                         placeholder="Usa"
                         onChange={handleChange} />
-                    <button type="submit">Register</button>
+                    <button type="submit" disabled={loading}>{loading ? "Registration in progress" : "Register"}</button>
                 </div>
                 <div className="right">
                     <h1>I want to become a seller</h1>
@@ -95,8 +102,9 @@ const Register = () => {
                         rows="10"
                         onChange={handleChange}
                     ></textarea>
-                    <button type="submit" className='bRight'>Register</button>
+                    <button type="submit" className='bRight' disabled={loading}>{loading ? "Registration in progress" : "Register"}</button>
                 </div>
+                {error && <div className="error">{error}</div>}
             </form>
         </div>
     )

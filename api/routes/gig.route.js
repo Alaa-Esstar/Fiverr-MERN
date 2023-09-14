@@ -6,6 +6,6 @@ const { verifyToken } = require("../middleware/jwt");
 router.post("/", verifyToken, createGig)
 router.delete("/:id", verifyToken, deleteGig)
 router.get("/single/:id", verifyToken, getGig)
-router.get("/", verifyToken, getGigs)
+router.get("/", getGigs)
 
 module.exports = router;

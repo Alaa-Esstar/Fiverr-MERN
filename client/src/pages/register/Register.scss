@@ -45,6 +45,11 @@
                 &.bRight {
                     display: none;
                 }
+
+                &:disabled {
+                    background-color: #89d1af;
+                    cursor: not-allowed;
+                }
             }
 
             .toggle {
@@ -106,6 +111,11 @@
                     transform: translateX(26px);
                 }
             }
+        }
+
+        .error {
+            color: red;
+            text-align: center;
         }
     }
 
