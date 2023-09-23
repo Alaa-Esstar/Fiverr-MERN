@@ -4,7 +4,7 @@ import newRequest from '../../utils/newRequest'
 import { useQuery } from '@tanstack/react-query'
 
 const Orders = () => {
-    const currentUser = JSON.parse(localStorage.getItem("curentUser"))
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
 
     const { isLoading, error, data } = useQuery({
         queryKey: ['orders'],

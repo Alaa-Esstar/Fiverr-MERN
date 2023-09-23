@@ -15,11 +15,11 @@ const conversationSchema = new Schema({
         type: String,
         required: true
     },
-    readdBySeller: {
+    readBySeller: {
         type: Boolean,
         required: true
     },
-    readdByBuyer: {
+    readByBuyer: {
         type: Boolean,
         required: true
     },
