@@ -45,7 +45,7 @@ app.use((err, req, res, next) => {
     return res.status(errorStatus).send(errorMessage);
 })
 
-app.listen(8000, () => {
+app.listen(8001, () => {
     connectToDataBase();
-    console.log("bakend server is running on port 8000")
+    console.log("bakend server is running on port 8001")
 })
